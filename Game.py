@@ -112,16 +112,19 @@ class games:
         # print(list2)
         rangeL = len(listUser)-1
         if numuser > numrnd:
-            print("your number is bigger")
+            print("chose a number smaller")
             for item in range(rangeL):
                 if listUser[item] == listRnd[item]:
-                    print("digit in index {0} is correct num is {1}!!!".format(item,listUser[item]))
+                    # print("\033[1;34;40m ",listUser[item])
+                    print("\033[1;34;40m ","digit in index {0} is correct num is {1}!!!".format(item,listUser[item]))
+
 
         else:
-            print("your number is small")
+            print("chose a number bigger")
             for item in range(rangeL):
                 if listUser[item] == listRnd[item]:
-                    print("digit in index {0} is correct num is {1}!!!".format(item,listUser[item]))
+                    # print("\033[1;34;40m ",listUser[item])
+                    print("\033[1;34;40m ","digit in index {0} is correct num is {1}!!!".format(item,listUser[item]))
     def IncScore(self):
         # print(int(self.get_score()))
         # print(type(self.get_score()))
@@ -141,9 +144,14 @@ class games:
             print("your score reset !!! ")
         self.set_level(str(l))
 
+    def decScore(self):
+        pass #TODO def dec Score
+
     def SaveNewValue(self,user,level,score):
         # sql = "update users set score = '{0}' ,level = '{1}' where name = '{2}';".format(score,level,user)
         u.savedata(newscore=score,newlevel=level,name=user)
+        # TODO add to play func
+        # TODO add comment for exit 0
         # return sql
 
     def hint2(self,number):
@@ -172,6 +180,7 @@ class games:
 
 
 # # #
-# g = games('ali','0','5')
+g = games('ali','0','5')
+g.hint(3076,3077)
 # g.hint2(random.randint(1000,84684))
 # g.playgame()
