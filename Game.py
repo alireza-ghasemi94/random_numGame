@@ -110,21 +110,28 @@ class games:
             listRnd.append(n2)
         # print(list1)
         # print(list2)
-        rangeL = len(listUser)-1
+        rangeL = len(listUser)
         if numuser > numrnd:
-            print("chose a number smaller")
+            print("choose a number smaller")
             for item in range(rangeL):
                 if listUser[item] == listRnd[item]:
                     # print("\033[1;34;40m ",listUser[item])
-                    print("\033[1;34;40m ","digit in index {0} is correct num is {1}!!!".format(item,listUser[item]))
-
+                    print("\033[1;32;40m ","digit in index {0} is correct num is {1}!!!".format(item,listUser[item]))
+                    print("\033[1;33;40m")
+                else:
+                    print("\033[1;31;40m ", "digit in index {0} is Wrong num is {1}!!!".format(item, listUser[item]))
+                    print("\033[1;33;40m")
 
         else:
-            print("chose a number bigger")
+            print("choose a number bigger")
             for item in range(rangeL):
                 if listUser[item] == listRnd[item]:
                     # print("\033[1;34;40m ",listUser[item])
-                    print("\033[1;34;40m ","digit in index {0} is correct num is {1}!!!".format(item,listUser[item]))
+                    print("\033[1;32;40m ","digit in index {0} is correct num is {1}!!!".format(item,listUser[item]))
+                    print("\033[1;33;40m")
+                else:
+                    print("\033[1;31;40m ", "digit in index {0} is Wrong num is {1}!!!".format(item, listUser[item]))
+                    print("\033[1;33;40m")
     def IncScore(self):
         # print(int(self.get_score()))
         # print(type(self.get_score()))
@@ -180,7 +187,7 @@ class games:
 
 
 # # #
-g = games('ali','0','5')
-g.hint(3076,3077)
+# g = games('ali','0','5')
+# g.hint(3076,3077)
 # g.hint2(random.randint(1000,84684))
 # g.playgame()
