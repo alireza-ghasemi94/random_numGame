@@ -1,5 +1,9 @@
 import random
+
+import art
+
 from userLogin import users
+from art import *
 
 u = users()
 num1 = 0
@@ -58,11 +62,13 @@ class games:
 
 
     def playgame(self):
+        print("your level is : ", self.level)
         while True:
             num1,num2,chances = self.CheckLevel()
             number = self.RND_number()
-            print(number)
-            print("your level is : ",self.level)
+            print("Hint !!! ")
+            self.hint2(number)
+            print(number) ### TODO show hint   ---- show a digit of number rendom
             print("Length of number is :",len(str(number)))
             print("number is between {0} and {1}.".format(num1,num2))
             print('your chance : ',chances)
@@ -121,6 +127,7 @@ class games:
         # print(type(self.get_score()))
         s = int(self.get_score())
         s = s + 2
+        print("your current score is : ", s)
         self.set_score(str(s))
 
 
@@ -130,6 +137,8 @@ class games:
         if score >=20:
             l += 1
             self.set_score('0')
+            print("congratulations !!! your level is update : " , l)
+            print("your score reset !!! ")
         self.set_level(str(l))
 
     def SaveNewValue(self,user,level,score):
@@ -137,9 +146,32 @@ class games:
         u.savedata(newscore=score,newlevel=level,name=user)
         # return sql
 
+    def hint2(self,number):
+        listnum = []
+        a = str(number)
+        leng = len(a)-1
+
+        for item in a:
+            listnum.append(item)
+
+        print(listnum)
+        strnum = ""
+        rnd = random.randint(0,leng)
+        test = listnum[rnd]
+        for item2 in listnum:
+            if test == item2:
+                strnum += item2
+            else:
+                strnum += '#'
+
+        art1 = text2art(strnum, font='black')
+        print(art1)
+
+        print(strnum)
+
 
 
 # # #
 # g = games('ali','0','5')
+# g.hint2(random.randint(1000,84684))
 # g.playgame()
-# # # g.hint(4520,1556)
