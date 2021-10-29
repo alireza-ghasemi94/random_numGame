@@ -1,4 +1,6 @@
 import mysql.connector
+from cryptography.fernet import Fernet
+
 class users:
   def __init__(self):
     self.user = 'ali'
@@ -20,9 +22,12 @@ class users:
   #### register
 
   def reg(self,name,password):
-    sql = "insert into users(id,name,score,level,passwords) values (1,'{0}',0,1,'{1}');".format(name,password)
-    self.cursor.execute(sql)
-    self.conn.commit()
+    enpass = self.encryptpass(password)
+    print(len(str(enpass)))
+    print(enpass)#### TODO fix encrypt 'b'
+    # sql = "insert into users(id,name,score,level,passwords) values (1,'{0}',0,1,'{1}');".format(name,enpass)
+    # self.cursor.execute(sql)
+    # self.conn.commit()
 
 
 
@@ -67,7 +72,21 @@ class users:
     self.conn.commit()
 
 
-# u = users()
+  def encryptpass(self,passwords):
+    key = Fernet.generate_key()
+    fernet = Fernet(key)
+    encMessage = fernet.encrypt(passwords.encode())
+    return encMessage
+
+  def decryptpass(self,passwords,key):
+    pass
+
+  def keypass(self):
+    pass
+
+
+u = users()
+u.reg('test','p10')
 # u.savedata(newscore=10,newlevel=2,name='ali')
 # # # u.reg('alireza','4cfcbfd56')
 # #

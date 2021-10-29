@@ -13,9 +13,9 @@ if Entekhab == '1':
     username = input("enter your name : \n")
     passwords = input("enter your password : \n")
     u.reg(username,passwords)
-    A = u.login(username,passwords)
-    g = games(A[1],A[2],A[3])
-    g.playgame() #### TODO set name score and level and run game
+    # A = u.login(username,passwords)
+    # g = games(A[1],A[2],A[3])
+    # g.playgame() #### TODO set name score and level and run game
 
 
 elif Entekhab == '2':
