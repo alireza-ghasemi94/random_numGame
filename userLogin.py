@@ -1,5 +1,6 @@
 import mysql.connector
 from cryptography.fernet import Fernet
+import hashlib
 
 class users:
   def __init__(self):
@@ -22,20 +23,21 @@ class users:
   #### register
 
   def reg(self,name,password):
-    enpass = self.encryptpass(password)
-    print(len(str(enpass)))
-    print(enpass)#### TODO fix encrypt 'b'
-    # sql = "insert into users(id,name,score,level,passwords) values (1,'{0}',0,1,'{1}');".format(name,enpass)
-    # self.cursor.execute(sql)
-    # self.conn.commit()
+    enpass = self.encodepass(password)
+    # print(len(str(enpass)))
+    # print(enpass)#### TODO fix encrypt 'b'
+    sql = "insert into users(id,name,score,level,passwords) values (1,'{0}',0,1,'{1}');".format(name,enpass)
+    self.cursor.execute(sql)
+    self.conn.commit()
 
 
 
   def login(self,username,password):
     users = self.selectusers()
+    userpassword = self.encodepass(password)
     listuser = {}
     for item in users:
-      if username == item[1] and password == item[4]:
+      if username == item[1] and userpassword == item[4]:
         print('ok')
         id = str(item[0])
         name = str(item[1])
@@ -72,21 +74,16 @@ class users:
     self.conn.commit()
 
 
-  def encryptpass(self,passwords):
-    key = Fernet.generate_key()
-    fernet = Fernet(key)
-    encMessage = fernet.encrypt(passwords.encode())
-    return encMessage
-
-  def decryptpass(self,passwords,key):
-    pass
-
-  def keypass(self):
-    pass
+  def encodepass(self,passwords):
+    encMessage = hashlib.md5(passwords.encode())
+    result = encMessage.hexdigest()
+    return result
 
 
-u = users()
-u.reg('test','p10')
+
+
+# u = users()
+# u.reg('test','p10')
 # u.savedata(newscore=10,newlevel=2,name='ali')
 # # # u.reg('alireza','4cfcbfd56')
 # #

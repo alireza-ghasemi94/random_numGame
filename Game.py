@@ -181,7 +181,7 @@ class games:
             if test == item2:
                 strnum += item2
             else:
-                strnum += '#'
+                strnum += 'X'
 
         art1 = text2art(strnum, font='black')
         print(art1)

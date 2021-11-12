@@ -1,5 +1,6 @@
 from userLogin import users
 from Game import games
+import time
 
 u = users()
 
@@ -13,9 +14,12 @@ if Entekhab == '1':
     username = input("enter your name : \n")
     passwords = input("enter your password : \n")
     u.reg(username,passwords)
-    # A = u.login(username,passwords)
-    # g = games(A[1],A[2],A[3])
-    # g.playgame() #### TODO set name score and level and run game
+    A = u.login(username,passwords)
+    # time.sleep(5)
+    # print(A[2])
+    # print(A)
+    g = games('name','score','level')
+    g.playgame()
 
 
 elif Entekhab == '2':
